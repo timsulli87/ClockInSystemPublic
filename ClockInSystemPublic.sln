@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockInSystemPublic", "ClockInSystemPublic.csproj", "{6462B44B-E19B-4582-8765-31D5EF8B2C5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Clock In|Any CPU = Clock In|Any CPU
+		Clock In|x64 = Clock In|x64
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Clock In|Any CPU.ActiveCfg = Clock In|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Clock In|Any CPU.Build.0 = Clock In|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Clock In|x64.ActiveCfg = Clock In|x64
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Clock In|x64.Build.0 = Clock In|x64
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Debug|x64.ActiveCfg = Debug|x64
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Debug|x64.Build.0 = Debug|x64
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Release|x64.ActiveCfg = Release|x64
+		{6462B44B-E19B-4582-8765-31D5EF8B2C5F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9507245E-9FA9-4293-9588-A16ADB4A7222}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6462B44B-E19B-4582-8765-31D5EF8B2C5F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ClockInSystemPublic</RootNamespace>
+    <AssemblyName>Clock In</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Clock.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Clock In|AnyCPU'">
+    <OutputPath>bin\Clock In\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Clock In|x64'">
+    <OutputPath>bin\x64\Clock In\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminTypes.cs" />
+    <Compile Include="EmployeeTimecard.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="FormAddTimecard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddTimecard.Designer.cs">
+      <DependentUpon>FormAddTimecard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddTimecard2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddTimecard2.Designer.cs">
+      <DependentUpon>FormAddTimecard2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDayReport.Designer.cs">
+      <DependentUpon>FormDayReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeleteTimecard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeleteTimecard.Designer.cs">
+      <DependentUpon>FormDeleteTimecard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeleteTimecard2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeleteTimecard2.Designer.cs">
+      <DependentUpon>FormDeleteTimecard2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditRemoveEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditRemoveEmp.Designer.cs">
+      <DependentUpon>FormEditRemoveEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditRemoveEmp2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditRemoveEmp2.Designer.cs">
+      <DependentUpon>FormEditRemoveEmp2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditTime.Designer.cs">
+      <DependentUpon>FormEditTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditTime2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditTime2.Designer.cs">
+      <DependentUpon>FormEditTime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditTime3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditTime3.Designer.cs">
+      <DependentUpon>FormEditTime3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmployeeReport.Designer.cs">
+      <DependentUpon>FormEmployeeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeeReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmployeeReport2.Designer.cs">
+      <DependentUpon>FormEmployeeReport2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEnterPin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEnterPin.Designer.cs">
+      <DependentUpon>FormEnterPin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddNewEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewEmp.Designer.cs">
+      <DependentUpon>FormAddNewEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpMenu.Designer.cs">
+      <DependentUpon>FormEmpMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMgrMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMgrMenu.Designer.cs">
+      <DependentUpon>FormMgrMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreReport.Designer.cs">
+      <DependentUpon>FormStoreReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewMyHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewMyHours.Designer.cs">
+      <DependentUpon>FormViewMyHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Timecard.cs" />
+    <EmbeddedResource Include="FormAddTimecard.resx">
+      <DependentUpon>FormAddTimecard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddTimecard2.resx">
+      <DependentUpon>FormAddTimecard2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDayReport.resx">
+      <DependentUpon>FormDayReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeleteTimecard.resx">
+      <DependentUpon>FormDeleteTimecard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeleteTimecard2.resx">
+      <DependentUpon>FormDeleteTimecard2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditRemoveEmp.resx">
+      <DependentUpon>FormEditRemoveEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditRemoveEmp2.resx">
+      <DependentUpon>FormEditRemoveEmp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditTime.resx">
+      <DependentUpon>FormEditTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditTime2.resx">
+      <DependentUpon>FormEditTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditTime3.resx">
+      <DependentUpon>FormEditTime3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeeReport.resx">
+      <DependentUpon>FormEmployeeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeeReport2.resx">
+      <DependentUpon>FormEmployeeReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEnterPin.resx">
+      <DependentUpon>FormEnterPin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddNewEmp.resx">
+      <DependentUpon>FormAddNewEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpMenu.resx">
+      <DependentUpon>FormEmpMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMgrMenu.resx">
+      <DependentUpon>FormMgrMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreReport.resx">
+      <DependentUpon>FormStoreReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewMyHours.resx">
+      <DependentUpon>FormViewMyHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
