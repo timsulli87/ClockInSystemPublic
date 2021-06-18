@@ -1,0 +1,33 @@
+=============================================================================================
+=============================================================================================
+
+CREATE TABLE Employees_T (
+	EmpID VARCHAR(4) NOT NULL,
+	EmpFName VARCHAR(50),
+	EmpLName VARCHAR(50),
+	AccessLevel VARCHAR(1),
+CONSTRAINT Employees_T_PK PRIMARY KEY (EmpID));
+
+
+=============================================================================================
+=============================================================================================
+
+CREATE TABLE Stores_T (
+	StoreID VARCHAR(4) NOT NULL,
+	StoreName VARCHAR(50),
+CONSTRAINT Stores_T_PK PRIMARY KEY (StoreID));
+
+
+=============================================================================================
+=============================================================================================
+
+CREATE TABLE Timecards_T (
+	TimecardID INT IDENTITY(1,1),
+	EmpID VARCHAR(4) NOT NULL,
+	StoreID VARCHAR(4) NOT NULL,
+	TimeIn DATETIME2(0),
+	TimeOut DATETIME2(0),
+	Type VARCHAR(25),
+CONSTRAINT Timecards_T_PK PRIMARY KEY (TimecardID),
+CONSTRAINT Timecards_T_FK1 FOREIGN KEY (EmpID), REFERENCES Employees_T (EmpID),
+CONSTRAINT Timecards_T_FK2 FOREIGN KEY (StoreID), REFERENCES Stores_T (StoreID));
