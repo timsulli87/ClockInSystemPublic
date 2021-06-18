@@ -1,0 +1,292 @@
+===============================================================================================
+Add a timecard with no clock out time
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[AddClockin] 
+	@EmpID VARCHAR(4),
+	@StoreID VARCHAR(1),
+	@TimeIn DATETIME2(0),
+	@Type VARCHAR(25)
+
+	AS
+BEGIN
+	INSERT INTO Timecards_T (EmpID, StoreID, TimeIn, Type) VALUES
+	(@EmpID, @StoreID, @TimeIn, @Type);
+END
+
+
+===============================================================================================
+Add a new employee
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[AddEmp] 
+	@EmpID VARCHAR(4),
+	@EmpFName VARCHAR(50),
+	@EmpLName VARCHAR(50),
+	@AccessLevel VARCHAR(1)
+AS
+BEGIN
+
+    INSERT INTO Employees_T VALUES
+	(@EmpID, @EmpFName, @EmpLName, @AccessLevel);
+END
+
+
+===============================================================================================
+Add a complete timecard
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[AddTimecard] 
+	@EmpID VARCHAR(4),
+	@StoreID VARCHAR(1),
+	@TimeIn DATETIME2(0),
+	@TimeOut DATETIME2(0),
+	@Type VARCHAR(25)
+
+	AS
+BEGIN
+	INSERT INTO Timecards_T (EmpID, StoreID, TimeIn, TimeOut, Type) VALUES
+	(@EmpID, @StoreID, @TimeIn, @TimeOut, @Type);
+END
+
+
+===============================================================================================
+Check for a valid PIN
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[CheckPin]
+	@EmpID VARCHAR(4)
+
+AS
+BEGIN
+	SELECT COUNT (EmpID)
+	FROM Employees_T
+	WHERE EmpID = @EmpID;
+END
+
+
+===============================================================================================
+Check if employee is currently clocked in
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[CheckStatus]
+	@EmpID VARCHAR(4)
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT COUNT (TimecardID)
+	FROM Timecards_T
+	WHERE EmpID = @EmpID AND TimeOut IS NULL;
+END
+
+
+===============================================================================================
+Clock employee in
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[ClockIn] 
+	@EmpID VARCHAR(4),
+	@StoreID VARCHAR(4),
+	@TimeIn DATETIME2,
+	@Type VARCHAR(25)
+
+AS
+BEGIN
+	INSERT INTO Timecards_T (EmpID, StoreID, TimeIn, Type) VALUES
+	(@EmpID, @StoreID, @TimeIn, @Type);
+END
+
+
+===============================================================================================
+Clock employee out
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[ClockOut]
+	@EmpID VARCHAR(4),
+	@TimeOut DATETIME2
+AS
+BEGIN
+	UPDATE Timecards_T  
+	SET TimeOut = @TimeOut
+	WHERE EmpID = @EmpID AND TimeOut IS NULL;
+END
+
+
+===============================================================================================
+Run Day Report
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[DayReport] 
+	@Date DATETIME2(0),
+	@StoreID VARCHAR(1)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    SELECT EmpID, EmpFName, EmpLName, TimeIn, TimeOut, Type, TotalHours
+	FROM View_StoreReport
+	WHERE TimeIn BETWEEN @Date AND DATEADD(DAY, 1, @Date)
+	AND StoreID = @StoreID
+	ORDER BY EmpLName;
+END
+
+
+===============================================================================================
+Delete a timecard
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[DeleteTimecard] 
+	@TimecardID INT
+AS
+BEGIN
+	DELETE FROM Timecards_T
+	WHERE TimecardID = @TimecardID;
+END
+
+
+===============================================================================================
+Edit a timecard with no clock out time
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[EditClockinTime]
+	@TimecardID INT,
+	@TimeIn DATETIME2(0),
+	@Type VARCHAR(25)
+AS
+BEGIN
+	Update Timecards_T
+	SET TimeIn = @TimeIn, Type = @Type
+	WHERE TimecardID = @TimecardID;
+END
+
+
+===============================================================================================
+Edit an employee's information
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[EditEmp] 
+	
+	@EmpID VARCHAR(4),
+	@EmpFName VARCHAR(50),
+	@EmpLName VARCHAR(50),
+	@AccessLevel VARCHAR(1)
+AS
+BEGIN
+			
+	UPDATE Employees_T
+	SET EmpFName = @EmpFName, EmpLName = @EmpLName, AccessLevel = @AccessLevel
+	WHERE EmpID = @EmpID;
+		
+END
+
+
+===============================================================================================
+Edit a complete timecard
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[EditTime]
+	@TimecardID INT,
+	@TimeIn DATETIME2(0),
+	@TimeOut DATETIME2(0),
+	@Type VARCHAR(25)
+AS
+BEGIN
+	Update Timecards_T
+	SET TimeIn = @TimeIn, TimeOut = @TimeOut, Type = @Type
+	WHERE TimecardID = @TimecardID;
+END
+
+
+===============================================================================================
+Run Employee Report
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[EmpReport]
+	@EmpID VARCHAR(4),
+	@TimeIn DATETIME2(0),
+	@TimeOut DATETIME2(0)
+AS
+BEGIN
+		SET NOCOUNT ON;
+
+    SELECT * FROM Timecards_T
+	WHERE EmpID = @EmpID
+	AND TimeIn BETWEEN @TimeIn AND DATEADD(DAY, 1, @TimeOut)
+	ORDER BY TimeIn;
+END
+
+
+===============================================================================================
+Search employees by last name
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[GetByLastName] 
+	@EmpLName VARCHAR(50)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT EmpID, EmpFName, EmpLName 
+	FROM dbo.Employees_T
+	WHERE EmpLName = @EmpLName;
+END
+
+
+===============================================================================================
+Match user PIN input to employee record
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[MatchPin] 
+	@EmpID VARCHAR(4)
+	
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * 
+	FROM dbo.Employees_T
+	WHERE EmpID = @EmpID;
+END
+
+
+===============================================================================================
+Search timecards for a specific employee and date
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[SelectTimecard]
+	@EmpID VARCHAR(4),
+	@Date DATE
+AS
+BEGIN	
+	SET NOCOUNT ON;
+
+    SELECT * FROM Timecards_T
+	WHERE EmpID = @EmpID
+	AND TimeIn BETWEEN @Date AND DATEADD(day, 1, @Date);
+END
+
+
+===============================================================================================
+Run Store Report
+===============================================================================================
+
+CREATE PROCEDURE [dbo].[StoreReport]
+	@StoreID VARCHAR(1),
+	@Start DATETIME2(0),
+	@End DATETIME2(0)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    SELECT EmpID, EmpFName, EmpLName, Type, SUM(TotalHours) AS 'TotalHours'
+	FROM View_StoreReport
+	WHERE StoreID = @StoreID
+	AND TimeIn BETWEEN @Start AND DATEADD(DAY, 1, @End)
+	GROUP BY EmpID, EmpFName, EmpLName, Type
+	ORDER BY EmpLName;
+	
+END

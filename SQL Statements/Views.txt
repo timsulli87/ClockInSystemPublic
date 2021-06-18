@@ -1,0 +1,12 @@
+===================================================================================================================
+Store Report View-used in Store Report & Day Report stored procedures
+===================================================================================================================
+
+SELECT	dbo.Employees_T.EmpID, dbo.Employees_T.EmpFName, dbo.Employees_T.EmpLName, dbo.Timecards_T.TimeIn, 
+	dbo.Timecards_T.TimeOut, dbo.Timecards_T.Type, dbo.Stores_T.StoreID, dbo.Stores_T.StoreName, 
+	SUM(CAST(DATEDIFF(minute, dbo.Timecards_T.TimeIn, dbo.Timecards_T.TimeOut) / 60. AS DECIMAL(7, 2))) AS TotalHours
+FROM	dbo.Employees_T INNER JOIN
+	dbo.Timecards_T ON dbo.Employees_T.EmpID = dbo.Timecards_T.EmpID INNER JOIN
+	dbo.Stores_T ON dbo.Timecards_T.StoreID = dbo.Stores_T.StoreID
+GROUP BY dbo.Employees_T.EmpID, dbo.Employees_T.EmpFName, dbo.Employees_T.EmpLName, dbo.Timecards_T.Type, 
+	dbo.Stores_T.StoreID, dbo.Stores_T.StoreName, dbo.Timecards_T.TimeIn, dbo.Timecards_T.TimeOut
